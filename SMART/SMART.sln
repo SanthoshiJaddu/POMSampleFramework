@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2043
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMART", "SMART\SMART.csproj", "{BC188272-6D90-4613-B0ED-A2538558BA1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumWrapper", "SMART\Selenium\SeleniumWrapper\SeleniumWrapper.csproj", "{B622DDDC-8A09-4907-B357-9121E38220A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BC188272-6D90-4613-B0ED-A2538558BA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC188272-6D90-4613-B0ED-A2538558BA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC188272-6D90-4613-B0ED-A2538558BA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B622DDDC-8A09-4907-B357-9121E38220A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B622DDDC-8A09-4907-B357-9121E38220A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B622DDDC-8A09-4907-B357-9121E38220A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B622DDDC-8A09-4907-B357-9121E38220A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

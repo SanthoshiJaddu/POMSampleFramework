@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SMART
@@ -45,7 +46,42 @@ namespace SMART
 
 
         #region PrivateMethods
-
+        /// <summary>
+        /// Function to decrypt a encrypted string to a plain text string.
+        /// </summary>
+        /// <param name="encryptedString">Send the encrypted string to be decrypted to normal string.</param>
+        /// <param name="key">Returns a plain text string</param>
+        /// <returns></returns>
+        public static string GetDecryptedString(string encryptedString)
+        {
+            string key = "AutomationTest";
+            try
+            {
+                encryptedString = encryptedString.Replace(" ", "+");
+                byte[] bytesBuff = Convert.FromBase64String(encryptedString);
+                using (Aes objAES = Aes.Create())
+                {
+                    Rfc2898DeriveBytes crypto = new Rfc2898DeriveBytes(key, new byte[] { 0x1d, 0x68, 0x6b, 0x5a, 0x20, 0x4d, 0x65, 0x5d });
+                    objAES.Key = crypto.GetBytes(32);
+                    objAES.IV = crypto.GetBytes(16);
+                    using (MemoryStream mStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(mStream, objAES.CreateDecryptor(), CryptoStreamMode.Write))
+                        {
+                            cryptoStream.Write(bytesBuff, 0, bytesBuff.Length);
+                            cryptoStream.Close();
+                        }
+                        encryptedString = Encoding.Unicode.GetString(mStream.ToArray());
+                    }
+                }
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine("Cryptographic exception occured. Details :" + e.StackTrace);
+                Console.WriteLine("Cryptographic exception occured. Messsage :" + e.Message);
+            }
+            return encryptedString;
+        }
         public static string GetEnvironment(string xmlPath)
         {
             string environment = "";
